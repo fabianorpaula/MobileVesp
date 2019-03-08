@@ -7,6 +7,8 @@ public class Jogador : MonoBehaviour
 
     public int vida = 10;
     public int pontos = 0;
+    public int moedas = 0;
+
     public float velocidade = 0.05f;
     
     void Start()
@@ -55,14 +57,22 @@ public class Jogador : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        //TOCOU NA COMIDA
         if(col.gameObject.tag == "comida")
         {
             pontos++;
             Destroy(col.gameObject);
         }
+        //TOCOU NO VENENO
         if (col.gameObject.tag == "veneno")
         {
             vida--;
+            Destroy(col.gameObject);
+        }
+        //TOCOU NA MOEDA
+        if (col.gameObject.tag == "moeda")
+        {
+            moedas++;
             Destroy(col.gameObject);
         }
     }

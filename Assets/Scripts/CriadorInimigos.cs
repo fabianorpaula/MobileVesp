@@ -5,8 +5,9 @@ using UnityEngine;
 public class CriadorInimigos : MonoBehaviour {
 
 
-    public GameObject Objetoquecai;
-    public GameObject Objetoquecai2;
+    public GameObject ObjetoPonto;
+    public GameObject ObjetoVeneno;
+    public GameObject ObjetoMoeda;
     private int contador = 0;
 
     //Referencia ao Script que controla o jogo
@@ -37,27 +38,45 @@ public class CriadorInimigos : MonoBehaviour {
         if (contador > 50)
         {
             int sorteio = Random.Range(0, 10);
-            if (sorteio > 8)
+            Debug.Log(sorteio);
+            if (sorteio >0 && sorteio<3)
             {
                 //PONTO
                 float posX = Random.Range(-2.5f, 2.5f);
                 Vector3 posOrigem = new Vector3(posX, 6, 0);
-                GameObject Item = Instantiate(Objetoquecai, posOrigem, Quaternion.identity);
+                GameObject Item = Instantiate(ObjetoPonto, posOrigem, Quaternion.identity);
                 Destroy(Item, 3f);
                 contador = 0;
             }
-            else
+            else if(sorteio > 2)
             {
                 //Inimigo
                 float posX = Random.Range(-2.5f, 2.5f);
                 Vector3 posOrigem = new Vector3(posX, 6, 0);
-                GameObject Item = Instantiate(Objetoquecai2, posOrigem, Quaternion.identity);
+                GameObject Item = Instantiate(ObjetoVeneno, posOrigem, Quaternion.identity);
                 Destroy(Item, 3f);
                 contador = 0;
+            }else if(sorteio == 0){
+                //Moeda
+                CriarMoeda();
             }
 
 
         }
     }
 
+    void CriarPonto(){
+
+    }
+    void CriarVeneno(){
+
+    }
+
+    void CriarMoeda(){
+        float posX = Random.Range(-2.5f, 2.5f);
+                Vector3 posOrigem = new Vector3(posX, 6, 0);
+                GameObject Item = Instantiate(ObjetoMoeda, posOrigem, Quaternion.identity);
+                Destroy(Item, 3f);
+                contador = 0;
+    }
 }
