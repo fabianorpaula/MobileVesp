@@ -6,6 +6,7 @@ TagManager:
   tags:
   - comida
   - veneno
+  - moeda
   layers:
   - Default
   - TransparentFX

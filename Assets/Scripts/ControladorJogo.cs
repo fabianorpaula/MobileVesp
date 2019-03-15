@@ -74,6 +74,10 @@ public class ControladorJogo : MonoBehaviour
         Usuario.GetComponent<Jogador>().pontos = 0;
         Usuario.GetComponent<Jogador>().vida = Salvador.InformarVida();
         Usuario.GetComponent<Jogador>().moedas = 0;
+        Debug.Log("NIEVEL"+Salvador.InformarNivel());
+        if(Salvador.InformarNivel() > 1){
+            Usuario.GetComponent<Jogador>().AtualizarSprite();
+        }
         GAMEOVER.SetActive(false);
     }
 

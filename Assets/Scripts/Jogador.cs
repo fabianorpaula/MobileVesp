@@ -5,6 +5,7 @@ using UnityEngine;
 public class Jogador : MonoBehaviour
 {
 
+    public Sprite Bota2;
     public int vida = 10;
     public int pontos = 0;
     public int moedas = 0;
@@ -14,8 +15,14 @@ public class Jogador : MonoBehaviour
     void Start()
     {
        // vida = 17;
+       
     }
 
+
+    public void AtualizarSprite(){
+        GetComponent<SpriteRenderer>().sprite = Bota2;
+        velocidade = 0.07f;
+    }
     void Update()
     {
         //SeguirDedo();

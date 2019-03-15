@@ -8,12 +8,16 @@ public class Salve : MonoBehaviour
     private int maiorpontuacao = 0;
     private int moedas = 0;
 
+    private int nivel = 0;
     //Minhas Vidas
-    private int vidas_max = 6;
+    private int vidas_max = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        //Usado para zerar
+        ///PlayerPrefs.DeleteAll();
+
         //RECORDE
         if(PlayerPrefs.HasKey("recorde") == true)
         {
@@ -36,7 +40,15 @@ public class Salve : MonoBehaviour
             vidas_max = PlayerPrefs.GetInt("vidas_max");
         }else
         {
-            PlayerPrefs.SetInt("vidas_max", 6);
+            PlayerPrefs.SetInt("vidas_max", 1);
+        }
+        //NIVEL ATUAL
+        if(PlayerPrefs.HasKey("nivel") == true)
+        {
+            nivel = PlayerPrefs.GetInt("nivel");
+        }else
+        {
+            PlayerPrefs.SetInt("nivel", 1);
         }
         
     }
@@ -87,4 +99,21 @@ public class Salve : MonoBehaviour
         return vidas_max;
     }
 
+    public void AumentaVida(){
+        vidas_max = PlayerPrefs.GetInt("vidas_max");
+        vidas_max++;
+        PlayerPrefs.SetInt("vidas_max", vidas_max);
+    }
+///NIvel
+    public int InformarNivel(){
+        nivel = PlayerPrefs.GetInt("nivel");
+        return nivel;
+    }
+
+    public void AumentaNivel(){
+        nivel = PlayerPrefs.GetInt("nivel");
+        nivel++;
+        PlayerPrefs.SetInt("nivel", nivel);
+        Debug.Log("nivel autal"+nivel);
+    }
 }
