@@ -34,21 +34,31 @@ public class Loja : MonoBehaviour
         TotaldeMoedas.text = Salvador.InformaMoeda().ToString();
     }
 
+    public void ApertarBotao(int numerodobotao){
+        switch(numerodobotao){
+            case 1:
+                //Informa quantidad de vidas atuais
+                int vidasatuais = Salvador.InformarVida();
+                //informa o valor para comprar nova vida
+                int valorvida = 5 * vidasatuais;
+                //Chama função de compra e informa botão
+                Comprar(valorvida, 1);
+                break;
+            case 2:
+                //SO PODE COMPRAR SE ESTIVER NO NIVEL 1
+                if(Salvador.InformarNivel() == 1){
+                Comprar(50, 2);
+        }
+                break;
+        }
+    }
     public void Botao1(){
-        //Informa quantidad de vidas atuais
-        int vidasatuais = Salvador.InformarVida();
-        //informa o valor para comprar nova vida
-        int valorvida = 5 * vidasatuais;
-        //Chama função de compra e informa botão
-        Comprar(valorvida, 1);
+        
 
     }
 
     public void Botao2(){
-        //SO PODE COMPRAR SE ESTIVER NO NIVEL 1
-        if(Salvador.InformarNivel() == 1){
-            Comprar(50, 2);
-        }
+        
         
     }
 

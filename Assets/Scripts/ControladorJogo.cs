@@ -16,6 +16,7 @@ public class ControladorJogo : MonoBehaviour
     public Text Recorde;
     public Text MaiorRecorde;
     public Text Parabens;
+    public Text MoedasAtuais;
     public Text TotaldeMoedas;
 
 
@@ -89,6 +90,7 @@ public class ControladorJogo : MonoBehaviour
         {
             //PAUSE O JOGO
             gameON = false;
+            GetComponent<MinhaPropaganda>().ShowAd();
             Time.timeScale = 0;
             GAMEOVER.SetActive(true);
             
@@ -105,6 +107,10 @@ public class ControladorJogo : MonoBehaviour
             MaiorRecorde.text = "Recorde: " + Salvador.InformaRecorde().ToString();
 
             //InformaModeas
+            //Moedas Atuais
+            MoedasAtuais.text = Usuario.GetComponent<Jogador>().moedas.ToString();
+
+
             //Pego do meu save as moedas guardadas
             int moedasatuais = Salvador.InformaMoeda();
             //Somo com as moedas da partida
@@ -114,6 +120,29 @@ public class ControladorJogo : MonoBehaviour
             //Exibo o meu total de moedas
             TotaldeMoedas.text = Salvador.InformaMoeda().ToString();
         }
+    }
+
+    //DAR RECOMPENSA AO JOGADOR
+    public void RecompensarJogador(){
+
+        int vezes2 = Usuario.GetComponent<Jogador>().moedas *2;
+        if(vezes2 == 0){
+            vezes2 =1;
+        }
+        MoedasAtuais.text = vezes2.ToString();
+
+
+        int moedasatuais = Salvador.InformaMoeda();
+        if(Usuario.GetComponent<Jogador>().moedas == 0){
+                moedasatuais = 1;
+            }
+        //Somo com as moedas da partida
+         moedasatuais = moedasatuais + Usuario.GetComponent<Jogador>().moedas;
+            
+            ///Informo ao meu save meu total de moedas
+            Salvador.NovoMoeda(moedasatuais);
+            //Exibo o meu total de moedas
+            TotaldeMoedas.text = Salvador.InformaMoeda().ToString();
     }
 
 
