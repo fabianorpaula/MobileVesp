@@ -31,7 +31,7 @@ public class ControladorJogo : MonoBehaviour
     private GameObject Usuario;
 
     //variavel para detectar se o jogo esta ATIVO
-    private bool gameON = false;
+    public bool gameON = false;
 
 
     // Start is called before the first frame update
@@ -130,8 +130,6 @@ public class ControladorJogo : MonoBehaviour
             vezes2 =1;
         }
         MoedasAtuais.text = vezes2.ToString();
-
-
         int moedasatuais = Salvador.InformaMoeda();
         if(Usuario.GetComponent<Jogador>().moedas == 0){
                 moedasatuais = 1;

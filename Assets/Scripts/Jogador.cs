@@ -12,10 +12,13 @@ public class Jogador : MonoBehaviour
 
     public float velocidade = 0.05f;
     
+
+    //CHAMAR MEU SOM
+    private MeuSom SomJogador;
+
     void Start()
     {
-       // vida = 17;
-       
+      SomJogador = GameObject.FindGameObjectWithTag("SONS").GetComponent<MeuSom>();       
     }
 
 
@@ -62,24 +65,28 @@ public class Jogador : MonoBehaviour
 
     }
 
+    ///ONDE OCORRE AS COLISISÕES
     void OnCollisionEnter2D(Collision2D col)
     {
         //TOCOU NA COMIDA
         if(col.gameObject.tag == "comida")
         {
             pontos++;
+            SomJogador.SomPonto();
             Destroy(col.gameObject);
         }
         //TOCOU NO VENENO
         if (col.gameObject.tag == "veneno")
         {
             vida--;
+            SomJogador.SomDano();
             Destroy(col.gameObject);
         }
         //TOCOU NA MOEDA
         if (col.gameObject.tag == "moeda")
         {
             moedas++;
+            SomJogador.SomMoeda();
             Destroy(col.gameObject);
         }
     }
